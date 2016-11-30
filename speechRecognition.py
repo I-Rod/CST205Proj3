@@ -1,8 +1,16 @@
 import speech_recognition as sr
 import pyaudio
 import os
+import datetime
+import random
 r=sr.Recognizer()
 output=""
+time=datetime.datetime.now()
+jokes={1:"I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
+2:"What is grey and can't fly? A parking lot.",
+3:"Why don't some couples go to the gym? Because some relationships don't work out.",
+4:"Why did the scientist install a knocker on his door? He wanted to win the No-bell prize.",
+5:"If Apple made a car, would it have Windows?"}
 while output!="exit":
     print
     with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
@@ -11,32 +19,22 @@ while output!="exit":
         print("Processing...")
 
     try:
-        #print("Say something7!")
         print("You said "+r.recognize_google(audio))
         output=r.recognize_google(audio)
-        if output=="hello":
-            print("Hello! How are you today?")
-        #print("Say something3!")
+        if "hello" in output:
+            print("Hello! Hope you're doing well today!")
+        elif "what time is it" in output:
+            print ("The time is "+str(time))
+        elif "tell a joke" in output:
+            print (jokes.get(random.randint(1,5)))
+        elif "seriously" in output:
+            print("Of course! I am a very serious speech recognition;)")
     except LookupError:
         print("I could not understand, what you said")
-        #print("Say something4!")
     except sr.UnknownValueError:
         print("I could not understand, what you said")
-        #print("Say something5!")
     except sr.RequestError as e:
         print("Could not I wanna try smtn request results from Google Speech Recognition service; {0}".format(e))
-        #print("Say something6!")
-"""import speech_recognition as sr
-import pyaudio
-r=sr.Recognizer()
-with sr.Microphone(device_index=1) as source:
-    audio=r.listen(source(
+print("Bye! See you soon!")
 
-try:
-    print(r.recognize_google(audio))
-except sr.UnknownValueError:
-    print("I could not understand, what you said")
-except sr.RequestError as e:
-    print("Could not request results from Google Speech Recognition service; {0}".format(e))"""
-#    print("You said "+r.recognize_google(audio,key="GOOGLE_SPEECH_RECOGNITION_API_KEY"))
 
