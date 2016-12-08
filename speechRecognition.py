@@ -17,6 +17,19 @@ jokes={1:"I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
 8:"Your life", 
 9:"I've been programming since before steve had a job.",
 10:"Humor is like food. Not everyone gets it - Joseph Stalin."}
+def weatherForecast(city):
+    owm=pyowm.OWM('your api key')
+    observation=owm.weather_at_place(city)
+    w=observation.get_weather()
+    temperature=w.get_temperature('fahrenheit') 
+    w.get_detailed_status()
+    w.get_sunrise_time('iso')
+    w.get_sunset_time('iso')
+    print("Temperature: "+str(temperature['temp']))
+    print("Current weather: "+str(w.get_detailed_status()))
+    print("Sunrise: "+str(w.get_sunrise_time('iso')))
+    print("Sunset: "+str(w.get_sunset_time('iso')))
+
 while output!="exit":
     print
     with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
@@ -37,6 +50,8 @@ while output!="exit":
             print("Of course! I am a very serious speech recognition;)")
         elif "Google" in output:
             webbrowser.get('firefox').open_new('http://www.google.com/#q='+output[7:])
+        elif "what is the weather in" in output:
+            weatherForecast(output[22:])
     except LookupError:
         print("I could not understand, what you said")
     except sr.UnknownValueError:
