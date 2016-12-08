@@ -38,5 +38,3 @@ while output!="exit":
     except sr.RequestError as e:
         print("Could not I wanna try smtn request results from Google Speech Recognition service; {0}".format(e))
 print("Bye! See you soon!")
-
-
