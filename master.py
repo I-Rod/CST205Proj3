@@ -37,7 +37,7 @@ while output!="exit":
         print("Say something!")
         audio=r.listen(source)
         print("Processing...")
-
+        
     try:
         print("You said "+r.recognize_google(audio))
         output=r.recognize_google(audio)
