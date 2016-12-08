@@ -13,9 +13,14 @@ jokes={1:"I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
 2:"What is grey and can't fly? A parking lot.",
 3:"Why don't some couples go to the gym? Because some relationships don't work out.",
 4:"Why did the scientist install a knocker on his door? He wanted to win the No-bell prize.",
-5:"If Apple made a car, would it have Windows?"}
+5:"If Apple made a car, would it have Windows?",
+6:"We dont code anymore. When i code were gonna make code great again. itll be temendous believe me", 
+7:"Where is the chicken? Idk he crossed the road. ohhhhh", 
+8:"Your life", 
+9:"I've been programming since before steve had a job.",
+10:"Humor is like food. Not everyone gets it - Joseph Stalin."}
 def weatherForecast(city):
-    owm=pyowm.OWM('5aade8c8e40d66b4d1b0897a9a485d52')
+    owm=pyowm.OWM('your api key')
     observation=owm.weather_at_place(city)
     w=observation.get_weather()
     temperature=w.get_temperature('fahrenheit') 
@@ -49,7 +54,7 @@ while output!="exit":
         elif "what is the weather in" in output:
             weatherForecast(output[22:])	    
     except LookupError:
-        print("I could not understand, what you said 1")
+        print("I could not understand, what you said")
     except sr.UnknownValueError:
         print("I could not understand, what you said")
     except sr.RequestError as e:
