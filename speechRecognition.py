@@ -30,7 +30,7 @@ while output!="exit":
         elif "seriously" in output:
             print("Of course! I am a very serious speech recognition;)")
         elif "Google" in output:
-            webbrowser.get('firefox').open_new('http://www.google.com/#q='+output[7:50])
+            webbrowser.get('firefox').open_new('http://www.google.com/#q='+output[7:])
     except LookupError:
         print("I could not understand, what you said")
     except sr.UnknownValueError:
