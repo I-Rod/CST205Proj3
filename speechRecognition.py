@@ -4,16 +4,18 @@ import os
 import datetime
 import random
 import pyowm
+import webbrowser
 r=sr.Recognizer()
 output=""
 time=datetime.datetime.now()
+weatherphrase="what is the weather in"
 jokes={1:"I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
 2:"What is grey and can't fly? A parking lot.",
 3:"Why don't some couples go to the gym? Because some relationships don't work out.",
 4:"Why did the scientist install a knocker on his door? He wanted to win the No-bell prize.",
 5:"If Apple made a car, would it have Windows?"}
 def weatherForecast(city):
-    owm=pyowm.OWM('your api key')
+    owm=pyowm.OWM('5aade8c8e40d66b4d1b0897a9a485d52')
     observation=owm.weather_at_place(city)
     w=observation.get_weather()
     temperature=w.get_temperature('fahrenheit') 
@@ -42,11 +44,10 @@ while output!="exit":
             print (jokes.get(random.randint(1,5)))
         elif "seriously" in output:
             print("Of course! I am a very serious speech recognition;)")
-elif "Google" in output:
-+            webbrowser.get('firefox').open_new('http://www.google.com/#q='+output[7:50])
+        elif "Google" in output:
+           webbrowser.get('firefox').open_new('http://www.google.com/#q='+output[7:])
         elif "what is the weather in" in output:
-            weatherForecast(output[22:])
-	    
+            weatherForecast(output[22:])	    
     except LookupError:
         print("I could not understand, what you said 1")
     except sr.UnknownValueError:
@@ -54,5 +55,3 @@ elif "Google" in output:
     except sr.RequestError as e:
         print("Could not I wanna try smtn request results from Google Speech Recognition service; {0}".format(e))
 print("Bye! See you soon!")
-
-
