@@ -4,9 +4,7 @@ import os
 import sys
 import datetime
 import random
-#import pyttsx
-import pyaudio
-from espeak import espeak
+import pyttsx
 r=sr.Recognizer()
 output=""
 time=datetime.datetime.now()
@@ -32,9 +30,16 @@ while output!="exit":
         output=r.recognize_google(audio)
         if "hello" in output:
             print("Hello! Hope you're doing well today!")
-            print("next")
-            espeak.synth('you suck')
-            #engine = pyttsx.init()
+            with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+            	audio=r.listen(source)
+            	output=r.recognize_google(audio)
+            if "help me Siri" in output:
+            	print("What do you need help with?")
+            	with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+            		audio=r.listen(source)
+            		output=r.recognize_google(audio)
+            	if "i cannot find my keys" in output:
+            		print("Leave them lost. You deserve a day off.")
             #engine.say('Please leave me alone')
             #engine.runAndWait()
         elif "what time is it" in output:
@@ -46,6 +51,19 @@ while output!="exit":
             #engine.runAndWait()
         elif "seriously" in output:
             print("Of course! I am a very serious speech recognition;)")
+            with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+            	audio=r.listen(source)
+            	output=r.recognize_google(audio)
+            if "i think you are okay" in output:
+            	print("i am better than okay")
+            	with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+            		audio=r.listen(source)	
+            		output=r.recognize_google(audio)
+            	if "are you" in output:
+            		with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+            			audio=r.listen(source)
+            			output=r.recognize_google(audio)
+            		print("i am the best. believe me. i will make speech recognition great again.")
             #engine = pyttsx.init()
             #engine.say('You are seriously failing')
             #engine.runAndWait()
