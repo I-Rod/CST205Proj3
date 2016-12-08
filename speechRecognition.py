@@ -7,7 +7,6 @@ import pyowm
 r=sr.Recognizer()
 output=""
 time=datetime.datetime.now()
-weatherphrase="what is the weather in"
 jokes={1:"I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
 2:"What is grey and can't fly? A parking lot.",
 3:"Why don't some couples go to the gym? Because some relationships don't work out.",
@@ -25,7 +24,6 @@ def weatherForecast(city):
     print("Current weather: "+str(w.get_detailed_status()))
     print("Sunrise: "+str(w.get_sunrise_time('iso')))
     print("Sunset: "+str(w.get_sunset_time('iso')))
-weatherForecast('Seaside')
 while output!="exit":
     print
     with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
