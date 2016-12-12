@@ -42,12 +42,41 @@ while output!="exit":
         output=r.recognize_google(audio)
         if "hello" in output:
             print("Hello! Hope you're doing well today!")
+            with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+                audio=r.listen(source)
+                output=r.recognize_google(audio)
+            if "help me" in output:
+                print("What do you need help with?")
+                with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+                    audio=r.listen(source)
+                    output=r.recognize_google(audio)
+                if "i cannot find my keys" in output or "i can't find my keys" in output or "i lost my keys" in output:
+                    print("Leave them lost. You deserve a day off.")
         elif "what time is it" in output:
             print ("The time is "+str(time))
         elif "tell a joke" in output:
             print (jokes.get(random.randint(1,10)))
         elif "seriously" in output:
             print("Of course! I am a very serious speech recognition;)")
+            with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+                audio=r.listen(source)
+                output=r.recognize_google(audio)
+            if "i think you are okay" in output:
+                print("i am better than okay")
+                with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+                    audio=r.listen(source)
+                    output=r.recognize_google(audio)
+                if "are you" in output:
+                    with sr.Microphone(device_index=2,sample_rate=44100,chunk_size=8192) as source:
+                        audio=r.listen(source)
+                        output=r.recognize_google(audio)
+                        print("i am the best. believe me. i will make speech recognition great again.")
+        elif "why are humans stupid" in output:
+            print("You're human. Ask yourself.")
+        elif "f*** off" in output:
+            print("I don't think I can do that. Why don't you do it instead?")
+        elif "I love you" in output:
+            print("I love you too. Is that what you wanna hear?")
         elif "Google" in output:
             webbrowser.get('firefox').open_new('http://www.google.com/#q='+output[7:])
         elif "what is the weather in" in output:
